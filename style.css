@@ -117,13 +117,13 @@ body {
   color: var(--clr-purple-600);
 
   background-color: var(--clr-purple-100);
-  background-image: url("/assets/images/background-pattern-mobile.svg");
+  background-image: url("assets/images/background-pattern-mobile.svg");
   background-repeat: no-repeat;
   background-size: contain;
 
   @media (width > 800px) {
     background-color: var(--clr-purple-100);
-    background-image: url("/assets/images/background-pattern-desktop.svg");
+    background-image: url("assets/images/background-pattern-desktop.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
