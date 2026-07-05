@@ -1,0 +1,251 @@
+@font-face {
+  font-family: "WorkSans";
+  src: url("./assets/fonts/WorkSans-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --clr-white: hsl(0 100% 100%);
+  --clr-purple-100: hsl(275 100% 97%);
+  --clr-purple-600: hsl(292 16% 49%);
+  --clr-purple-950: hsl(292 42% 14%);
+  --clr-hover: hsl(281 83% 54%);
+
+  --ff-base: "WorkSans", sans-serif;
+
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --fs-400: 1rem;
+  --fs-500: 1.125rem;
+  --fs-700: 2.5rem;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* General Styling */
+
+body {
+  font-family: var(--ff-base);
+  font-weight: var(--fw-regular);
+
+  font-size: var(--fs-400);
+
+  color: var(--clr-purple-600);
+
+  background-color: var(--clr-purple-100);
+  background-image: url("/assets/images/background-pattern-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  @media (width > 800px) {
+    background-color: var(--clr-purple-100);
+    background-image: url("/assets/images/background-pattern-desktop.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+h1 {
+  font-size: var(--fs-700);
+}
+
+h2 {
+  font-size: var(--fs-500);
+}
+
+/* Utility Classes */
+
+.wrapper {
+  width: min(60ch, 100% - 4rem);
+  margin-inline: auto;
+}
+
+.flow > *:is(:not(:first-child)) {
+  margin-block-start: var(--flow-spacer, 1.5rem);
+}
+
+/* Block */
+
+.main-grid-container {
+  --padding-vertical-spacing: 2rem;
+  --padding-horizontal-spacing: 1.75rem;
+  background-color: var(--clr-white);
+
+  margin-block: 10rem;
+  padding: var(--padding-vertical-spacing) var(--padding-horizontal-spacing) 0;
+  border-radius: 1rem;
+}
+
+/* Main Header */
+
+.heading-wrapper {
+  display: flex;
+  gap: var(--padding-horizontal-spacing);
+}
+
+.heading-wrapper h1 {
+  color: var(--clr-purple-950);
+}
+
+/* Accordion */
+
+.accordion {
+  --accordion-spacing: 1.5rem;
+  display: grid;
+  gap: var(--accordion-spacing);
+}
+
+/* Accordion panel */
+
+.accordion-panel {
+  display: grid;
+  gap: var(--accordion-spacing);
+}
+
+.accordion-panel:not(:last-child) {
+  border-bottom: 1px solid hsl(from var(--clr-purple-950) h s l / 0.1);
+}
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 500ms;
+}
+
+.accordion-content[aria-hidden="false"] {
+  grid-template-rows: 1fr;
+  padding-block-end: var(--accordion-spacing);
+}
+
+.accordion-content > div {
+  overflow: hidden;
+}
+
+/* Button */
+
+.accordion-trigger {
+  cursor: pointer;
+  text-align: start;
+  font-weight: var(--fw-semibold);
+  color: var(--clr-purple-950);
+  background-color: transparent;
+  padding: 0;
+  border: none;
+
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  transition: 500ms;
+}
+
+.accordion-trigger:hover,
+.accordion-trigger:focus-visible {
+  color: var(--clr-hover);
+  outline: none;
+}
+
+.icon {
+  display: grid;
+}
+
+.icon svg {
+  grid-column: 1;
+  grid-row: 1;
+  transition: opacity 500ms;
+}
+
+.accordion-trigger[aria-expanded="true"] .icon > *:last-child,
+.accordion-trigger[aria-expanded="false"] .icon > *:first-child {
+  opacity: 1;
+}
+
+.accordion-trigger[aria-expanded="false"] .icon > *:last-child,
+.accordion-trigger[aria-expanded="true"] .icon > *:first-child {
+  opacity: 0;
+}
